@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Hello',
+    date: 'July 3rd, 1992',
+    firstParagraph: `Hello hello hello hello hello`,
+    secondParagraph: `Hi hi hi hi hi hi hi hi hi hi`,
+    thirdParagraph: `Yup yup yup yup yup yup yup yup`
   }
 ];
 
@@ -114,3 +121,46 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(object){
+  //declaring vars
+  const newDiv = document.createElement('div')
+  const h2 = document.createElement('h2')
+  const date = document.createElement('p')
+  const p1 = document.createElement('p')
+  const p2 = document.createElement('p')
+  const p3 = document.createElement('p')
+  const span = document.createElement('span')
+
+  //adding classes
+  newDiv.classList.add('article')
+  date.classList.add('date')
+  span.classList.add('expandButton')
+
+  //textContent
+  h2.textContent = object.title
+  date.textContent = object.date
+  p1.textContent = object.firstParagraph
+  p2.textContent = object.secondParagraph
+  p3.textContent = object.thirdParagraph
+  span.textContent = '+'
+
+  //appending children to div
+  newDiv.appendChild(h2)
+  newDiv.appendChild(date)
+  newDiv.appendChild(p1)
+  newDiv.appendChild(p2)
+  newDiv.appendChild(p3)
+  newDiv.appendChild(span)
+
+  //eventListener
+  span.addEventListener('click', (event) => {
+    newDiv.classList.toggle('article-open')
+  })
+  return newDiv
+}
+const articles = document.querySelector('.articles')
+data.forEach(item => {
+  const article = articleMaker(item)
+  articles.appendChild(article)
+})
