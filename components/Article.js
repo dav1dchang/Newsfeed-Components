@@ -164,5 +164,3 @@ data.forEach(item => {
   const article = articleMaker(item)
   articles.appendChild(article)
 })
-
-console.log(articleMaker())
